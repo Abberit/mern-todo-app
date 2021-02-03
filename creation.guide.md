@@ -1,18 +1,28 @@
-# Prerequisites:
+# Creation guide
+This guide can be used as tutorial on how to create MERN application on Linode. You may use code in `./server` and `./client` for the reference on end result.
+
+# Prerequisites
 * Node.js and yarn installed.
 * MongoDB database installed.
 
-# How this repo was created:
+# Create MERN app from scratch
 
-1. Run ```yarn init``` and follow prompts from command line.
+0. Create new folder to be the root of your new Node.js application.
 
-2. Run ```yarn add -E express``` to add production depenendency on Express Node.js framework.
+1. Inside new folder run ```yarn init``` and follow prompts from command line:
+```bash
+yarn init
+```
+
+2. Add production depenendency on Express Node.js framework:
+```bash
+yarn add -E express
+```
 
 3. Add file `./index.js` with the content for minimal Express server:
 
 ```javascript
-const express = require('express');
-//require('dotenv').config();
+const express = require("express");
 
 const app = express();
 
@@ -25,7 +35,7 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  res.send('Welcome to Express');
+  res.send("Welcome to Express");
 });
 
 app.listen(port, () => {
@@ -33,26 +43,31 @@ app.listen(port, () => {
 });
 ```
 
-4. Run the server with ```node index.js``` and check it is working.
+4. Run the server and check it is working:
+```bash
+node index.js
+```
 
-5. Run ```yarn add -E mongoose``` to add production dependency on MongoDB client and modelling utility.
+5. Add production dependency on MongoDB client and modelling utility:
+```bash
+yarn add -E mongoose
+```
 
-6. Add file './models/tasks.js' with the content:
-
+6. Add file `./models/tasks.js` with the content:
 ```javascript
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 //create schema for tasks
 const TasksSchema = new Schema({
   action: {
     type: String,
-    required: [true, 'The action text field is required'],
-  }
-})
+    required: [true, "The action text field is required"],
+  },
+});
 
 //create model for tasks
-const Tasks = mongoose.model('tasks', TasksSchema);
+const Tasks = mongoose.model("tasks", TasksSchema);
 
 module.exports = Tasks;
 ```
