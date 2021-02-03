@@ -246,4 +246,7 @@ cd client
 yarn start
 ```
 
-4. 
+4. Add production dependency on bootstrap UX library:
+```bash
+yarn add -E bootstrap
+```
