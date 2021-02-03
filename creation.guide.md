@@ -11,9 +11,12 @@ This guide can be used as tutorial on how to create MERN application on Linode. 
 
 2. Create two folders `./server` and `./client`, which will hold backend and frontend.
 
-## Building backend
+## Create Express backend
 
-1. Enter folder `./server`.
+1. Enter folder `./server`:
+```bash
+cd server
+```
 
 2. Run ```yarn init``` and follow prompts from command line:
 ```bash
@@ -187,7 +190,7 @@ MONGODB=REPLACE_WITH_YOUR_CONNECTION_STRING
 node -r dotenv/config index.js
 ```
 
-13. Test your API server. If you use VSCode you may test API using extension [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) and file `./test.http` with following content:
+13. Test your API server. If you use VSCode you may test API using extension [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) and file `./server/test.http` with following content:
 ```
 ##
 ## This is test file which can be executed with REST Client VSCode extension:
@@ -226,5 +229,21 @@ GET http://localhost:5000/api/tasks HTTP/1.1
 DELETE http://localhost:5000/api/tasks/{{id}} HTTP/1.1
 ```
 
+## Create React frontend
 
-14. Now let's create React frontend: go to project root and run `yarn create react-app client`.
+1. Go to project root `./` and run:
+```bash
+yarn create react-app client
+```
+
+2. This creates empty React app in `./client` folder. Enter this folder:
+```bash
+cd client
+```
+
+3. Check that your React application runs normally:
+```bash
+yarn start
+```
+
+4. 
