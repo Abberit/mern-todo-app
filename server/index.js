@@ -8,7 +8,7 @@ const port = process.env.PORT || 5000;
 const mongoDBConnectionString = process.env.MONGODB;
 
 if (!mongoDBConnectionString) {
-  console.error('Not found connection string in "MONGODB" environment variable, exiting.');
+  console.error(`Not found connection string in "MONGODB" environment variable, exiting.`);
   process.exit(1);
 }
 

@@ -7,6 +7,10 @@ const TasksSchema = new Schema({
     type: String,
     required: [true, "The action text field is required"],
   },
+  completed: {
+    type: Boolean,
+    required: [false],
+  },
 });
 
 //create model for tasks

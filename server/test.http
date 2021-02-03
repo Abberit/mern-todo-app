@@ -12,10 +12,22 @@ POST http://localhost:5000/api/tasks HTTP/1.1
 content-type: application/json
 
 {
-  "action": "Test API of my MERN TODO application"  
+  "action": "Test API of my MERN TODO application",
+  "completed": false
 }
 
 ### Get tasks to see new task returned
+GET http://localhost:5000/api/tasks HTTP/1.1
+
+#### Update task
+PUT http://localhost:5000/api/tasks/{{id}} HTTP/1.1
+content-type: application/json
+
+{
+  "completed": true
+}
+
+### Get tasks to see new task updated
 GET http://localhost:5000/api/tasks HTTP/1.1
 
 ### Delete new task
