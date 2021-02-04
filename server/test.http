@@ -1,0 +1,35 @@
+##
+## This is test file which can be executed with REST Client VSCode extension:
+## https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+##
+
+### Get tasks
+GET http://localhost:5000/api/tasks HTTP/1.1
+
+#### Add task
+# @name newTask
+POST http://localhost:5000/api/tasks HTTP/1.1
+content-type: application/json
+
+{
+  "action": "Test API of my MERN TODO application",
+  "completed": false
+}
+
+### Get tasks to see new task returned
+GET http://localhost:5000/api/tasks HTTP/1.1
+
+#### Update task
+PUT http://localhost:5000/api/tasks/{{id}} HTTP/1.1
+content-type: application/json
+
+{
+  "completed": true
+}
+
+### Get tasks to see new task updated
+GET http://localhost:5000/api/tasks HTTP/1.1
+
+### Delete new task
+@id = {{newTask.response.body.$._id}}
+DELETE http://localhost:5000/api/tasks/{{id}} HTTP/1.1

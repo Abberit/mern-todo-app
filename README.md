@@ -1,2 +1,7 @@
-# mern-todo-app
-Example of Node.js TODO app
+# Create Node.js app on Linode
+
+This repository contains the tutorial of creating MERN (MongoDB, Express, React, Node) application on Linode.
+
+At the end of tutorial you will have TODO web application hosted on Linode server alongside with MongoDB and Node backend.
+
+To start go to [tutorial.md](/tutorial.md).
