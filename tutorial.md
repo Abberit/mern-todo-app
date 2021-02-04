@@ -151,14 +151,9 @@ mongoose
 //since mongoose promise is depreciated, we overide it with node's promise
 mongoose.Promise = global.Promise;
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
 app.use(bodyParser.json());
 
+app.use("/", express.static("public"));
 app.use("/api", routes);
 
 app.use((err, req, res, next) => {
@@ -232,6 +227,11 @@ DELETE http://localhost:5000/api/tasks/{{id}} HTTP/1.1
   },
 ```
 
+15. Now you can start server with simple command:
+```bash
+  yarn start
+```
+
 ## Create React frontend
 
 1. Go to project root `./` and run:
@@ -249,7 +249,7 @@ cd client
 yarn start
 ```
 
-4. Add production dependency on antd UX library and icons:
+4. Add production dependency on `antd` UX library and icons:
 ```bash
 yarn add -E antd
 yarn add -E @ant-design/icons
@@ -435,21 +435,42 @@ export class TaskService {
 }
 ```
 
-8. From client folder check UX again:
+8. From `./client` folder check UX again:
 ```bash
 yarn start
 ```
 You should see the result like this:
+
 ![](tasks.screenshot.png)
 
-9. Now add runtime dependency on http client utility:
+9. Now add production dependency on http client utility:
 ```bash
 yarn add -E axios
 ```
 
 10. Update `./client/src/TaskService.js` with the code going to backend:
 ```javascript
-test
+import axios from "axios";
+
+export class TaskService {
+  async get() {
+    const response = await axios.get("/api/tasks");
+    return response.data;
+  }
+
+  async updateCompleted(task, completed) {
+    await axios.put(`/api/tasks/${task._id}`, { completed: completed });
+  }
+
+  async add(task) {
+    await axios.post(`/api/tasks`, { action: task });
+  }
+
+  async delete(task) {
+    await axios.delete(`/api/tasks/${task._id}`);
+  }
+}
+
 ```
 
 11. Add development dependency on utility for cross-platform folder copy:
@@ -466,13 +487,25 @@ and replace with this line:
   "build": "react-scripts build && copyfiles -E -u 1 './build/**/*' ../server/public/",
 ```
 
-11. Build `./client/` folder:
+11. Run build inside `./client/` folder:
 ```bash
 yarn build
 ```
 
-12. Now go to server folder and start server there:
+12. Now go to `./server` folder and start server there:
 ```bash
 cd ../server
 yarn start
 ```
+
+13. Check your application runs correctly. You are done with steps on your local machine!
+
+# Deploy on Linode server
+
+1. Deploy Node.js server using these instructions: [TODO: update docs on deploying Node.js app using Abberit Admin Panel].
+
+2. Deploy MongoDB using these instructions: [TODO: update docs on deploying MongoDB using Abberit Admin Panel].
+
+3. Configure Node.js to use MongoDB: [TODO: update docs on manipulating app settings using Abberit Admin Panel].
+
+4. Try everything working on Linode!
