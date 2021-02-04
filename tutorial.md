@@ -4,8 +4,8 @@ This tutorial demonstrates how to create MERN application on Linode. You may use
 At the end of tutorial you will have TODO web application hosted on Linode server alongside with MongoDB and Node backend.
 
 # Prerequisites
-* Node.js and yarn installed.
-* MongoDB database installed.
+* Node.js and yarn installed on local dev machine.
+* MongoDB database installed on local dev machine.
 
 # Create MERN app from scratch
 
