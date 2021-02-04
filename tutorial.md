@@ -121,15 +121,9 @@ router.delete("/tasks/:id", (req, res, next) => {
 module.exports = router;
 ```
 
-8. Add production dependency on Express middleware:
-```bash
-yarn add -E body-parser
-```
-
-9. Update the content of `./server/index.js` with:
+8. Update the content of `./server/index.js` with:
 ```javascript
 const express = require("express");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes/api");
 
@@ -151,7 +145,7 @@ mongoose
 //since mongoose promise is depreciated, we overide it with node's promise
 mongoose.Promise = global.Promise;
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use("/", express.static("public"));
 app.use("/api", routes);
@@ -166,22 +160,22 @@ app.listen(port, () => {
 });
 ```
 
-10. Add development dependency to setup environment variables:
+9. Add development dependency to setup environment variables:
 ```bash
 yarn add -D -E dotenv
 ```
 
-11. Create file `./server/.env` which defines environment variable `MongoDB` holding connection string to your MongoDB:
+10. Create file `./server/.env` which defines environment variable `MongoDB` holding connection string to your MongoDB:
 ```
 MONGODB=REPLACE_WITH_YOUR_CONNECTION_STRING
 ```
 
-12. Run server again and check your server works as expected (`-r dotenv/config` is needed to set environment variables):
+11. Run server again and check your server works as expected (`-r dotenv/config` is needed to set environment variables):
 ```bash
 node -r dotenv/config index.js
 ```
 
-13. Test your API server. If you use VSCode you may test API using extension [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) and file `./server/test.http` with following content:
+12. Test your API server. If you use VSCode you may test API using extension [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) and file `./server/test.http` with following content:
 ```
 ##
 ## This is test file which can be executed with REST Client VSCode extension:
@@ -205,6 +199,7 @@ content-type: application/json
 GET http://localhost:5000/api/tasks HTTP/1.1
 
 #### Update task
+@id = {{newTask.response.body.$._id}}
 PUT http://localhost:5000/api/tasks/{{id}} HTTP/1.1
 content-type: application/json
 
@@ -216,18 +211,17 @@ content-type: application/json
 GET http://localhost:5000/api/tasks HTTP/1.1
 
 ### Delete new task
-@id = {{newTask.response.body.$._id}}
 DELETE http://localhost:5000/api/tasks/{{id}} HTTP/1.1
 ```
 
-14. Add startup script to `./server/package.json` as first property:
+13. Add startup script to `./server/package.json` as first property:
 ```javascript
   "scripts": {
     "start": "node -r dotenv/config index.js"
   },
 ```
 
-15. Now you can start server with simple command:
+14. Now you can start server with simple command:
 ```bash
   yarn start
 ```

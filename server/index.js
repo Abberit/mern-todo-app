@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes/api");
 
@@ -21,7 +20,7 @@ mongoose
 //since mongoose promise is depreciated, we overide it with node's promise
 mongoose.Promise = global.Promise;
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use("/", express.static("public"));
 app.use("/api", routes);
