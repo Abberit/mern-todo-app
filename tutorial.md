@@ -1,5 +1,5 @@
 # Tutorial
-This tutorial demonstrates how to create MERN application on Linode. You may use code in `./server` and `./client` for the reference on end result.
+This tutorial demonstrates how to create MERN (MongoDB, Express, React, Node.js) application on Linode. You may use code in `./server` and `./client` for the reference on end result.
 
 At the end of tutorial you will have TODO web application hosted on Linode server alongside with MongoDB and Node backend.
 
