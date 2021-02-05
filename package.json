@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "build-server": "cd server && yarn install --frozen-lockfile",
+    "build-client": "cd client && yarn install --frozen-lockfile && yarn build",
+    "build": "yarn run build-server && yarn run build-client",
+    "start": "cd server && yarn start"
+  }
+}

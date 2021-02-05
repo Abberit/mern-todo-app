@@ -7,7 +7,30 @@ At the end of tutorial you will have TODO web application hosted on Linode serve
 * Node.js and yarn installed on local dev machine.
 * MongoDB database installed on local dev machine.
 
-# Create MERN app from scratch
+# Option 1: Run existing MERN app
+
+1. In case if you don't want to create the app from scratch, then clone the repo:
+```bash
+  git clone https://github.com/Abberit/mern-todo-app.git
+```
+
+2. Run build at the root of the project:
+```bash
+  cd mern-todo-app
+  yarn build
+```
+
+3. Create file `./server/.env` which defines environment variable `MongoDB` holding connection string to your MongoDB:
+```
+MONGODB=REPLACE_WITH_YOUR_CONNECTION_STRING
+```
+
+3. Start application and verify it is working:
+```bash
+  yarn start
+```
+
+# Option 2: Create MERN app from scratch
 
 1. Create new folder to be the root of your new Node.js application.
 
@@ -140,10 +163,20 @@ if (!mongoDBConnectionString) {
 mongoose
   .connect(mongoDBConnectionString, { useNewUrlParser: true })
   .then(() => console.log(`Database connected successfully`))
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.error("Failed to connect to MongoDB:", err);
+    process.exit(1);
+  });
 
 //since mongoose promise is depreciated, we overide it with node's promise
 mongoose.Promise = global.Promise;
+
+// allow incoming requests from UX running on different port in dev setup
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.use(express.json());
 
@@ -464,15 +497,19 @@ export class TaskService {
     await axios.delete(`/api/tasks/${task._id}`);
   }
 }
-
 ```
 
-11. Add development dependency on utility for cross-platform folder copy:
+12. Add proxy definition as the first property in `./client/package.json`:
+```javascript
+  "proxy": "http://localhost:5000",
+```
+
+13. Add development dependency on utility for cross-platform folder copy:
 ```bash
 yarn add -D -E copyfiles
 ```
 
-12. Update client build script to copy optimized static files to `./server`. For that in `./client/package.json` find this line:
+14. Update client build script to copy optimized static files to `./server`. For that in `./client/package.json` find this line:
 ```javascript
   "build": "react-scripts build",
 ```
@@ -481,18 +518,18 @@ and replace with this line:
   "build": "react-scripts build && copyfiles -E -u 1 './build/**/*' ../server/public/",
 ```
 
-11. Run build inside `./client/` folder:
+15. Run build inside `./client/` folder:
 ```bash
 yarn build
 ```
 
-12. Now go to `./server` folder and start server there:
+16. Now go to `./server` folder and start server there:
 ```bash
 cd ../server
 yarn start
 ```
 
-13. Check your application runs correctly. You are done with steps on your local machine!
+17. Check your application runs correctly. You are done with steps on your local machine!
 
 # Deploy on Linode server
 

@@ -15,10 +15,20 @@ if (!mongoDBConnectionString) {
 mongoose
   .connect(mongoDBConnectionString, { useNewUrlParser: true })
   .then(() => console.log(`Database connected successfully`))
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.error("Failed to connect to MongoDB:", err);
+    process.exit(1);
+  });
 
 //since mongoose promise is depreciated, we overide it with node's promise
 mongoose.Promise = global.Promise;
+
+// allow incoming requests from UX running on different port in dev setup
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.use(express.json());
 
