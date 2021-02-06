@@ -6,7 +6,7 @@
     "email": "info@abberit.io",
     "url": "https://abberit.io"
   },
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "private": false,
   "scripts": {
     "build-server": "cd server && yarn install --frozen-lockfile",
