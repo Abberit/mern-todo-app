@@ -1,4 +1,13 @@
 {
+  "name": "mern-todo-app",
+  "version": "1.0.0",
+  "author": {
+    "name": "Abberit",
+    "email": "info@abberit.io",
+    "url": "https://abberit.io"
+  },
+  "license": "Apache 2.0",
+  "private": false,
   "scripts": {
     "build-server": "cd server && yarn install --frozen-lockfile",
     "build-client": "cd client && yarn install --frozen-lockfile && yarn build",

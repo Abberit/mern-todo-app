@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && copyfiles -E -u 1 './build/**/*' ../server/public/",
+    "build": "react-scripts build && copyfiles -E -u 1 \"./build/**/*\" ../server/public/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
