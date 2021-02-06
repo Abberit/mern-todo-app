@@ -519,7 +519,7 @@ yarn add -D -E copyfiles
 ```
 and replace with this line:
 ```javascript
-  "build": "react-scripts build && copyfiles -E -u 1 './build/**/*' ../server/public/",
+  "build": "react-scripts build && copyfiles -E -u 1 \"./build/**/*\" ../server/public/",
 ```
 
 15. Run build inside `./client/` folder:
