@@ -1,15 +1,19 @@
 # Tutorial
+
 This tutorial demonstrates how to create MERN (MongoDB, Express, React, Node.js) application on Linode. You may use code in `./server` and `./client` for the reference on end result.
 
 At the end of tutorial you will have TODO web application hosted on Linode server alongside with MongoDB and Node backend.
 
-# Prerequisites
-* Node.js and yarn installed on local dev machine.
-* MongoDB database installed on local dev machine.
+## Prerequisites
 
-# Option 1: Run existing MERN app
+* Node.js (14+) and yarn (1.22+) installed on local dev machine.
+* MongoDB (4.4.3+) database installed on local dev machine or elsewhere.
+* Account on Linode to deploy once local app is ready.
+
+## Option 1: Run existing MERN app
 
 1. In case if you don't want to create the app from scratch, then clone the repo:
+
 ```bash
   git clone https://github.com/Abberit/mern-todo-app.git
 ```
@@ -30,13 +34,13 @@ MONGODB=REPLACE_WITH_YOUR_CONNECTION_STRING
   yarn start
 ```
 
-# Option 2: Create MERN app from scratch
+## Option 2: Create MERN app from scratch
 
 1. Create new folder to be the root of your new Node.js application.
 
 2. Create two folders `./server` and `./client`, which will hold backend and frontend.
 
-## Create Express backend
+### Create Express backend
 
 1. Enter folder `./server`:
 ```bash
@@ -259,7 +263,7 @@ DELETE http://localhost:5000/api/tasks/{{id}} HTTP/1.1
   yarn start
 ```
 
-## Create React frontend
+### Create React frontend
 
 1. Go to project root `./` and run:
 ```bash
@@ -531,7 +535,7 @@ yarn start
 
 17. Check your application runs correctly. You are done with steps on your local machine!
 
-# Deploy on Linode server
+## Deploy on Linode server
 
 1. Deploy Node.js server using these instructions: [TODO: update docs on deploying Node.js app using Abberit Admin Panel].
 
