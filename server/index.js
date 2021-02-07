@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes/api");
+const path = require("path");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -32,7 +33,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.use("/", express.static("public"));
+app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/api", routes);
 
 app.use((err, req, res, next) => {
@@ -40,6 +41,14 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server running on port ${port}`);
+});
+
+process.on("SIGTERM", function () {
+  console.log(`Received SIGTERM, gracefully closing httpServer`);
+  server.close(function () {
+    console.log(`Http server ready to shutdown`);
+    process.exit(0);
+  });
 });
