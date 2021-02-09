@@ -546,10 +546,24 @@ yarn start
 
 ## Deploy on Linode server
 
-1. Deploy Node.js server using these instructions: [TODO: update docs on deploying Node.js app using Abberit Admin Panel].
+1. Deploy Abberit Admin Panel with default Node.js app using [Linode Node.js StackScript](https://cloud.linode.com/stackscripts/745522). You will see something like this, when you navigate to Abberit Admin Panel:
+![nodejs app list](/img/nodejs-app-list.png)
 
-2. Deploy MongoDB using these instructions: [TODO: update docs on deploying MongoDB using Abberit Admin Panel].
+2. Deploy MongoDB using Abberit Admin Panel and name it `tasks`: [Deploy MongoDB on Linode](https://abberit.io/docs/app-add-mongodb/)
 
-3. Configure Node.js to use MongoDB: [TODO: update docs on manipulating app settings using Abberit Admin Panel].
+3. Configure Node.js `defaultApp` to use MongoDB `tasks`: navigate to `App Settings` of `defaultApp` and create a new setting `MONGODB` holding connection string. For MongoDB `tasks` private connection string would be `mongodb://tasks:27017`. More on settings management you can read [here](https://abberit.io/docs/app-manage-nodejs/#app-settings).
 
-4. Try everything working on Linode!
+4. Deploy TODO app we just created by navigating to `File Browser` of `defaultApp` and dragging the content of `server` folder of our app to `File Browser` content:
+![TODO app deployment](/img/nodejs-deploy-file-browser.png)
+
+5. Navigate to `Logs` tabs of `defaultApp` and click `Restart app` icon in top right corner:
+![restart with logs](/img/nodejs-logs-restart.png)
+
+6. Your application should be running on Linode server now! To navigate to it - click on `Hosting Environment` tab and click on `App uri`:
+![nodejs app uri](/img/nodejs-app-uri.png)
+
+7. Enjoy! You just created safe deployment of modern TODO MERN application on one of the best hosting provider.
+
+8. If you would like to learn the solution better: you have a little challenge. Currently there is no way to edit the task with our TODO app. Get that done and get it deployed on Linode again.
+
+P.S. If you liked this tutorial, run into some troubles or have a request on what other tutorial might help you - please don't hesitate to reach out at info@abberit.io.
