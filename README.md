@@ -4,6 +4,6 @@ This repository contains the tutorial of creating MERN (MongoDB, Express, React,
 
 At the end of tutorial you will have TODO web application hosted on Linode server alongside with MongoDB and Node backend.
 
-To start go to [tutorial.md](/tutorial.md). Your web application at the end will look like this:
+To start go to [tutorial.md](/tutorial.md). Your will create web application which looks like this:
 
 ![](tasks.screenshot.png)
