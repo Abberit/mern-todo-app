@@ -40,7 +40,7 @@ To learn the stack better - we highly recommend to create your application from 
 
 ## Deploy on Linode server
 
-1. Deploy Abberit Admin Panel with default Node.js app using [Linode Node.js StackScript](https://cloud.linode.com/stackscripts/745522). You will see something like this, when you navigate to Abberit Admin Panel:
+1. Deploy Abberit Admin Panel with default Node.js app using [Linode Node.js StackScript](https://cloud.linode.com/linodes/create?type=StackScripts&subtype=Account&stackScriptID=745522). Follow the link and UX prompts. Once deployed - you will see something like this, when you navigate to Abberit Admin Panel on your new Linode VM:
 ![nodejs app list](/img/nodejs-app-list.png)
 
 2. Deploy MongoDB using Abberit Admin Panel and name it `tasks`: [Deploy MongoDB on Linode](https://abberit.io/docs/app-add-mongodb/)
